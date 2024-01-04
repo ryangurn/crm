@@ -14,4 +14,9 @@ class Timezone extends Model
         'gmt_offset' => 'integer',
         'gmt_offset_name' => 'string',
     ];
+
+    public function relCountry()
+    {
+        return $this->morphedByMany(Country::class, 'related', 'timezone_mappings');
+    }
 }

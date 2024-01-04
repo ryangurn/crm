@@ -13,4 +13,9 @@ class Country extends Model
     protected $casts = [
         'translations' => 'json',
     ];
+
+    public function relTimezones()
+    {
+        return $this->morphToMany(Timezone::class, 'related', 'timezone_mapping');
+    }
 }
