@@ -14,8 +14,10 @@
         "laravel/framework": "^10.10",
         "laravel/horizon": "^5.21",
         "laravel/nova": "4.23.0",
+        "laravel/prompts": "^0.1.14",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "predis/predis": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
