@@ -30,7 +30,7 @@ class DownloadGeo implements ShouldQueue
         if (file_put_contents(
                 storage_path('app/tmp/') . $this->file,
                 file_get_contents(
-                    'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/' . $this->file
+                    'https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/csv/' . $this->file
                 )
             ) == false) {
             $this->fail("Unable to save file: " . $this->file);

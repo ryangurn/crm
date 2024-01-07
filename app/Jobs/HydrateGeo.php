@@ -28,10 +28,35 @@ class HydrateGeo implements ShouldQueue
      */
     public function handle(): void
     {
-        JsonParser::parse(storage_path('app/tmp/') . $this->file)->traverse(function (mixed $value, string|int $key, JsonParser $parser) {
+        // Opening the file for reading
+        $fileStream = fopen(storage_path('app/tmp/' . $this->file), 'r');
+        $csvContents = [];
+
+        // Reading the file line by line into an array
+        while (($line = fgetcsv($fileStream)) !== false) {
+            $csvContents[] = $line;
+        }
+
+        // Closing the file stream
+        fclose($fileStream);
+
+        $skipHeader = true;
+        // Attempt to import the CSV
+        foreach ($csvContents as $content) {
+            if ($skipHeader) {
+                // Skipping the header column (first row)
+                $skipHeader = false;
+                continue;
+            }
+
+            $arr = [];
+            foreach ($csvContents[0] as $key => $index) {
+                $arr[$index] = $content[$key];
+            }
+
             $this->batch()->add(
-                new ProcessGeo($value, $this->type),
+                new ProcessGeo($arr, $this->type)
             );
-        });
+        }
     }
 }
