@@ -27,22 +27,23 @@ class ProcessGeo implements ShouldQueue
      */
     public function handle(): void
     {
-        dd($this->data, $this->type);
+        return;
+//        dd($this->data, $this->type);
 
-        switch ($this->type) {
-            case GeoType::REGION:
-                break;
-            case GeoType::SUBREGION:
-                break;
-            case GeoType::COUNTRY:
-                break;
-            case GeoType::STATE:
-                break;
-            case GeoType::CITY:
-                break;
-            default:
-                $this->fail("Unknown type provided: " . $this->type);
-                break;
-        }
+////        switch ($this->type) {
+////            case GeoType::REGION:
+////                break;
+////            case GeoType::SUBREGION:
+////                break;
+////            case GeoType::COUNTRY:
+////                break;
+////            case GeoType::STATE:
+////                break;
+////            case GeoType::CITY:
+////                break;
+////            default:
+////                $this->fail("Unknown type provided: " . $this->type);
+////                break;
+//        }
     }
 }
