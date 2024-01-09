@@ -119,6 +119,7 @@ return [
     */
 
     'silenced' => [
+        Laravel\Telescope\Jobs\ProcessPendingUpdates::class,
         // App\Jobs\ExampleJob::class,
     ],
 
@@ -182,15 +183,15 @@ return [
     'defaults' => [
         'supervisor-1' => [
             'connection' => 'redis',
-            'queue' => ['urgent', 'high', 'medium', 'low'],
+            'queue' => ['urgent', 'high', 'medium', 'low', 'default'],
             'balance' => 'auto',
-            'autoScalingStrategy' => 'time',
+            'autoScalingStrategy' => 'size',
             'maxProcesses' => 1,
             'maxTime' => 0,
             'maxJobs' => 0,
             'memory' => 1024,
-            'tries' => 3,
-            'timeout' => 300,
+            'tries' => 0,
+            'timeout' => 600,
             'nice' => 0,
         ],
     ],
@@ -206,7 +207,7 @@ return [
 
         'local' => [
             'supervisor-1' => [
-                'maxProcesses' => 10,
+                'maxProcesses' => 30,
                 'balanceMaxShift' => 1,
                 'balanceCooldown' => 3,
             ],
