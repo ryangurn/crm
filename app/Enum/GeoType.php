@@ -9,5 +9,6 @@ enum GeoType
     case COUNTRY;
     case STATE;
     case CITY;
+    case TIMEZONE;
 }
 

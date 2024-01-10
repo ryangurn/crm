@@ -20,7 +20,7 @@ class HydrateGeo implements ShouldQueue
      */
     public function __construct(public string $file, public GeoType $type)
     {
-        //
+        $this->onQueue('low');
     }
 
     /**
@@ -51,7 +51,9 @@ class HydrateGeo implements ShouldQueue
 
             $arr = [];
             foreach ($csvContents[0] as $key => $index) {
-                $arr[$index] = $content[$key];
+                if ($content[$key] != "") {
+                    $arr[$index] = $content[$key];
+                }
             }
 
             $this->batch()->add(
