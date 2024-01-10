@@ -35,26 +35,16 @@ class GeoBackfill extends Command
         $this->info('[Start] Batching Started');
         // setup batch
         $batch = Bus::batch([
-            [
-                new DownloadGeo('regions.csv'),
-                new HydrateGeo('regions.csv', GeoType::REGION),
-            ],
-            [
-                new DownloadGeo('subregions.csv'),
-                new HydrateGeo('subregions.csv', GeoType::SUBREGION),
-            ],
-            [
-                new DownloadGeo('countries.csv'),
-                new HydrateGeo('countries.csv', GeoType::COUNTRY),
-            ],
-            [
-                new DownloadGeo('states.csv'),
-                new HydrateGeo('states.csv', GeoType::STATE),
-            ],
-            [
-                new DownloadGeo('cities.csv'),
-                new HydrateGeo('cities.csv', GeoType::CITY),
-            ],
+            new DownloadGeo('regions.csv'),
+            new HydrateGeo('regions.csv', GeoType::REGION),
+            new DownloadGeo('subregions.csv'),
+            new HydrateGeo('subregions.csv', GeoType::SUBREGION),
+            new DownloadGeo('countries.csv'),
+            new HydrateGeo('countries.csv', GeoType::COUNTRY),
+            new DownloadGeo('states.csv'),
+            new HydrateGeo('states.csv', GeoType::STATE),
+            new DownloadGeo('cities.csv'),
+            new HydrateGeo('cities.csv', GeoType::CITY),
         ])
             ->onQueue('low');
         $batch->dispatch();
